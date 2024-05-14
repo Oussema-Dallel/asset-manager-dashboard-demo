@@ -17,7 +17,7 @@ const theme = createTheme({
 		},
 		background: {
 			default: '#171717',
-			paper: '#6b6b6b',
+			paper: '#212121',
 		},
 		text:{
 			primary: '#f0efef',
@@ -37,6 +37,14 @@ const theme = createTheme({
 					':hover': {
 						color: '#f0efef',
 					},
+				},
+			},
+		},
+		MuiAppBar: {
+			styleOverrides: {
+				root: {
+					backgroundColor: '#171717',
+					color: '#f0efef',
 				},
 			},
 		},

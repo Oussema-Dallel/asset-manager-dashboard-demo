@@ -1,3 +1,5 @@
+import { AssetsCreator } from './pages/AssetsCreator';
+import { AssetsManager } from './pages/AssetsManager';
 import { Layout } from './app/components/Layout';
 import type { FunctionComponent, ReactElement } from 'react';
 import { Route, Routes } from 'react-router-dom';
@@ -7,11 +9,15 @@ const App: FunctionComponent = (): ReactElement => {
 		<Routes>
 			<Route
 				element={ <Layout /> }
-				path='/*'
+				path='*'
 			>
 				<Route
-					element={ <h1>the homepage</h1> }
+					element={ <AssetsCreator /> }
 					index
+				/>
+				<Route
+					element={ <AssetsManager /> }
+					path='assets-manager'
 				/>
 			</Route>
 		</Routes>
