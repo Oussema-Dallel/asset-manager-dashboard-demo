@@ -1,7 +1,7 @@
 import { apiSlice } from '../app/slices/apiSlice';
 import { configureStore as configureReduxStore } from '@reduxjs/toolkit';
 import rootReducer from './rootReducer';
-import type { PreloadedStateShapeFromReducersMapObject, StoreEnhancer } from '@reduxjs/toolkit';
+import type { PreloadedStateShapeFromReducersMapObject, StoreEnhancer, ThunkDispatch } from '@reduxjs/toolkit';
 
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -33,7 +33,9 @@ const useAppSelector = useSelector.withTypes<AppState>();
 
 type AppStore = ReturnType<typeof configureStore>;
 type GetState = () => AppState;
-type AppDispatch = typeof store.dispatch;
+
+type AppAction = Parameters<typeof rootReducer>[1];
+type AppDispatch = ThunkDispatch<AppState, undefined, AppAction>;
 const useAppDispatch = useDispatch.withTypes<AppDispatch>();
 
 export type { AppStore, AppState, GetState, AppDispatch };
