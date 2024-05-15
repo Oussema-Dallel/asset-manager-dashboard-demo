@@ -1,5 +1,5 @@
 import { apiSlice } from '../app/slices/apiSlice';
-import assetsManagerSlice from '../features/assestsManagement/store/assetsManagerSlice';
+import assetsManagerSlice from '../features/modules/AssestsManager/store/assetsManagerSlice';
 import { combineReducers } from '@reduxjs/toolkit';
 
 const rootReducer = combineReducers({

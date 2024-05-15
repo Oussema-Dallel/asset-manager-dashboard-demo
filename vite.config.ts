@@ -1,6 +1,6 @@
 /// <reference types="vitest" />
-/// <reference types="vite/client" />
 /// <reference types="vite-plugin-svgr/client" />
+/// <reference types="vite/client" />
 
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
@@ -14,10 +14,11 @@ export default defineConfig({
 		svgr({
 			include: '**/*.svg',
 			svgrOptions: {
-			  exportType: 'default',
+				exportType: 'default',
 			},
-		  }), 
+		}), 
 	],
+	assetsInclude: ['**/*.splat'],
 	test: {
 		globals: true,
 		environment: 'jsdom',

@@ -1,5 +1,5 @@
-import { AssetPreview } from '../features/assestsManagement/components/AssetPreview';
-import { useGetAssetsQuery } from '../features/assestsManagement/services/assetsManagerApi';
+import { AssetPreview } from '../features/modules/AssestsManager/components/AssetPreview';
+import { useGetAssetsQuery } from '../features/modules/AssestsManager/services/assetsManagerApi';
 import { Container, Grid } from '@mui/material';
 import type { FunctionComponent, ReactElement, ReactNode } from 'react';
 
