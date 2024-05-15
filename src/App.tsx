@@ -1,3 +1,4 @@
+import { AssetDetails } from './features/assestsManagement/components/AssetDetails';
 import { AssetsCreator } from './pages/AssetsCreator';
 import { AssetsManager } from './pages/AssetsManager';
 import { Layout } from './app/components/Layout';
@@ -18,6 +19,10 @@ const App: FunctionComponent = (): ReactElement => {
 				<Route
 					element={ <AssetsManager /> }
 					path='assets-manager'
+				/>
+				<Route
+					element={ <AssetDetails /> }
+					path='assets-manager/:assetId'
 				/>
 			</Route>
 		</Routes>

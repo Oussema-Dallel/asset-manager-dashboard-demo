@@ -1,12 +1,16 @@
 import type { Asset } from '../types/Asset';
 import { CardButton } from './CardButton';
 import { DeleteConfirmation } from './DeleteConfirmation';
+import { useNavigate } from 'react-router-dom';
 import { Card, CardActions, CardContent, CardMedia } from '@mui/material';
 import { type FunctionComponent, type ReactElement, useCallback, useState } from 'react';
 
 const AssetPreview: FunctionComponent<Partial<Asset> & Pick<Asset, 'assetId' | 'name'>> = ({ thumbnail = 'no image', assetId, name }): ReactElement => {
 	const [ isDeleteConfirmationOpen, setIsDeleteConfirmationOpen ] = useState<boolean>(false);
-	const onHandleViewAssetClicked = useCallback((): void => {}, []);
+	const navigate = useNavigate();
+	const onHandleViewAssetClicked = useCallback((): void => {
+		navigate(`/assets-manager/${ assetId }`);
+	}, [ assetId, navigate ]);
 
 	const onHandleDeleteCanceled = useCallback((): void => {
 		setIsDeleteConfirmationOpen(false);

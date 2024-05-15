@@ -12,7 +12,7 @@ const initialState: AssetsManagerState = {
 };
 
 const assetsManagerSlice = createSlice({
-	name: 'safsadfsdfsdf',
+	name: 'assetsManager',
 	initialState,
 	reducers: {},
 	extraReducers: (builder) => {

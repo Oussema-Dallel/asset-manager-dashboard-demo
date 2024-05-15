@@ -1,7 +1,13 @@
 import type { Asset } from '../features/assestsManagement/types/Asset';
 import sneakerBlue from '../features/assestsManagement/assets/sneaker_blue.png';
+import sneakerBlueSecond from '../features/assestsManagement/assets/sneaker_second_blue.png';
+import sneakerBlueThird from '../features/assestsManagement/assets/sneaker_third_blue.png';
 import sneakerColored from '../features/assestsManagement/assets/sneaker_colored.png';
+import sneakerColoredSecond from '../features/assestsManagement/assets/sneaker_second_colored.png';
+import sneakerColoredThird from '../features/assestsManagement/assets/sneaker_third_colored.png';
 import sneakerWhite from '../features/assestsManagement/assets/sneaker_white.png';
+import sneakerWhiteSecond from '../features/assestsManagement/assets/sneaker_second_white.jpg';
+import sneakerWhiteThird from '../features/assestsManagement/assets/sneaker_third_white.jpeg';
 import type { DefaultBodyType, HttpHandler, PathParams } from 'msw';
 import { delay, http, HttpResponse } from 'msw';
 
@@ -9,38 +15,38 @@ const data = {
 	assets: [
 		{
 			/* eslint-disable @typescript-eslint/naming-convention */
-			'2d_outputs': [ '2d_output_1', '2d_output_2' ],
-			'3d_output': [ '3d_output_1', '3d_output_2' ],
+			'2d_outputs': [ sneakerBlue, sneakerBlueSecond, sneakerBlueThird ],
+			'3d_output': '3d_output_1',
 			description: 'description',
 			assetId: '1',
-			inputs: [ 'input_1', 'input_2' ],
+			inputs: [ sneakerBlue, sneakerBlueSecond, sneakerBlueThird ],
 			name: 'sneaker blue',
 			thumbnail: sneakerBlue,
 		},
 		{
-			'2d_outputs': [ '2d_output_1', '2d_output_2' ],
-			'3d_output': [ '3d_output_1', '3d_output_2' ],
+			'2d_outputs': [ sneakerWhite, sneakerWhiteSecond, sneakerWhiteThird ],
+			'3d_output': '3d_output_1',
 			description: 'description',
 			assetId: '2',
-			inputs: [ 'input_1', 'input_2' ],
+			inputs: [ sneakerWhite, sneakerWhiteSecond, sneakerWhiteThird ],
 			name: 'snaker white',
 			thumbnail: sneakerWhite,
 		},
 		{
-			'2d_outputs': [ '2d_output_1', '2d_output_2' ],
+			'2d_outputs': [ sneakerWhite, sneakerWhiteSecond, sneakerWhiteThird ],
 			'3d_output': [ '3d_output_1', '3d_output_2' ],
 			description: 'description',
 			assetId: '3',
-			inputs: [ 'input_1', 'input_2' ],
+			inputs: [ sneakerWhite, sneakerWhiteSecond, sneakerWhiteThird ],
 			name: 'snaker white',
 			thumbnail: sneakerWhite,
 		},
 		{
-			'2d_outputs': [ '2d_output_1', '2d_output_2' ],
+			'2d_outputs': [ sneakerColored, sneakerColoredSecond, sneakerColoredThird ],
 			'3d_output': [ '3d_output_1', '3d_output_2' ],
 			description: 'description',
 			assetId: '4',
-			inputs: [ 'input_1', 'input_2' ],
+			inputs: [ sneakerColored, sneakerColoredSecond, sneakerColoredThird ],
 			name: 'sneaker colored',
 			thumbnail: sneakerColored,
 			/* eslint-enable @typescript-eslint/naming-convention */
@@ -55,7 +61,9 @@ const handlers: HttpHandler[] = [
 		return HttpResponse.json({ message: 'Hello Mocked World!' });
 	}),
 
-	http.get<PathParams, DefaultBodyType, Asset[]>('/assets', () => {
+	http.get<PathParams, DefaultBodyType, Asset[]>('/assets', async () => {
+		await delay(3000);
+
 		return HttpResponse.json([ ...data.assets ]);
 	}),
 

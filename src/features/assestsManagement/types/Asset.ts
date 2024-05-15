@@ -1,7 +1,7 @@
 interface Asset {
 	/* eslint-disable @typescript-eslint/naming-convention */
 	'2d_outputs': string[];
-	'3d_output': string[];
+	'3d_output': string;
 	assetId: string;
 	description: string;
 	inputs: string[];

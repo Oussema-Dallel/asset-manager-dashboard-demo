@@ -12,14 +12,23 @@ const AssetsManager: FunctionComponent = (): ReactElement => {
 
 	if (isLoading) {
 		content = (
-			// TODO: Add Skeleton UI
-			<h1>Loading...</h1>
+			<Grid
+				item
+				xs={ 12 }
+			>
+				<h1>Loading...</h1>
+			</Grid>
 		);
 	}
 
 	if (isError) {
 		content = (
-			<h1>Error: { JSON.stringify(error) }</h1>
+			<Grid
+				item
+				xs={ 12 }
+			>
+				<h1>Error: { JSON.stringify(error) }</h1>
+			</Grid>
 		);
 	}
 
