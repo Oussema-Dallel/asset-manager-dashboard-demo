@@ -1,4 +1,4 @@
-import { apiSlice } from '../../../app/slices/apiSlice';
+import { apiSlice } from '../../../../app/slices/apiSlice';
 import type { Asset } from '../types/Asset';
 import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';

@@ -1,13 +1,13 @@
-import type { Asset } from '../features/assestsManagement/types/Asset';
-import sneakerBlue from '../features/assestsManagement/assets/sneaker_blue.png';
-import sneakerBlueSecond from '../features/assestsManagement/assets/sneaker_second_blue.png';
-import sneakerBlueThird from '../features/assestsManagement/assets/sneaker_third_blue.png';
-import sneakerColored from '../features/assestsManagement/assets/sneaker_colored.png';
-import sneakerColoredSecond from '../features/assestsManagement/assets/sneaker_second_colored.png';
-import sneakerColoredThird from '../features/assestsManagement/assets/sneaker_third_colored.png';
-import sneakerWhite from '../features/assestsManagement/assets/sneaker_white.png';
-import sneakerWhiteSecond from '../features/assestsManagement/assets/sneaker_second_white.jpg';
-import sneakerWhiteThird from '../features/assestsManagement/assets/sneaker_third_white.jpeg';
+import type { Asset } from '../features/modules/AssestsManager/types/Asset';
+import sneakerBlue from '../features/modules/AssestsManager/assets/sneaker_blue.png';
+import sneakerBlueSecond from '../features/modules/AssestsManager/assets/sneaker_second_blue.png';
+import sneakerBlueThird from '../features/modules/AssestsManager/assets/sneaker_third_blue.png';
+import sneakerColored from '../features/modules/AssestsManager/assets/sneaker_colored.png';
+import sneakerColoredSecond from '../features/modules/AssestsManager/assets/sneaker_second_colored.png';
+import sneakerColoredThird from '../features/modules/AssestsManager/assets/sneaker_third_colored.png';
+import sneakerWhite from '../features/modules/AssestsManager/assets/sneaker_white.png';
+import sneakerWhiteSecond from '../features/modules/AssestsManager/assets/sneaker_second_white.jpg';
+import sneakerWhiteThird from '../features/modules/AssestsManager/assets/sneaker_third_white.jpeg';
 import type { DefaultBodyType, HttpHandler, PathParams } from 'msw';
 import { delay, http, HttpResponse } from 'msw';
 

@@ -1,4 +1,4 @@
-import type { AppState } from '../../../../store/store';
+import type { AppState } from '../../../../../store/store';
 import type { Asset } from '../../types/Asset';
 import { createSelector } from '@reduxjs/toolkit';
 

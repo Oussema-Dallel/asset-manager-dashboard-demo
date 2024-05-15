@@ -1,4 +1,4 @@
-import { AssetDetails } from './features/assestsManagement/components/AssetDetails';
+import { AssetDetails } from './features/modules/AssestsManager/components/AssetDetails';
 import { AssetsCreator } from './pages/AssetsCreator';
 import { AssetsManager } from './pages/AssetsManager';
 import { Layout } from './app/components/Layout';

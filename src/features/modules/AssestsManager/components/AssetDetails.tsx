@@ -1,8 +1,8 @@
-import type { AppState } from '../../../store/store';
+import type { AppState } from '../../../../store/store';
 import { Container } from '@mui/material';
 import { getAssetById } from '../store/selectors/getAssetById';
 import { ImageListing } from './ImageListing';
-import { isNil } from '../../../app/utils/isNil';
+import { isNil } from '../../../../app/utils/isNil';
 import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import type { FunctionComponent, ReactElement } from 'react';
