@@ -12,13 +12,13 @@ const AppContainer: FunctionComponent<AppContainerProps> = ({ SideBar, Content }
 		<Grid container>
 			<Grid
 				item
-				xs={ 4 }
+				maxWidth={ 300 }
 			>
 				<SideBar />
 			</Grid>
 			<Grid
 				item
-				xs={ 8 }
+				xs={ 9 }
 			>
 				<Content />
 			</Grid>

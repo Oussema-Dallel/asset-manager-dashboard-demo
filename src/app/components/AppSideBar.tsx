@@ -9,7 +9,7 @@ const AppSideBar: FunctionComponent = (): ReactElement => {
 			sx={{
 				width: 300,
 				flexShrink: 0,
-				[`& .MuiDrawer-paper`]: { width: 300, boxSizing: 'border-box' },
+				[`& .MuiDrawer-paper`]: { width: 'inherit', boxSizing: 'border-box' },
 			}}
 			variant="permanent"
 		>
