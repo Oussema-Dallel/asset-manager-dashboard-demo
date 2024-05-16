@@ -48,7 +48,7 @@ const AssetDetails: FunctionComponent = (): ReactElement => {
 					<p>{ description }</p>
 					<ImageListing
 						assetName={ name }
-						colNumer={ 2 }
+						colNumber={ 2 }
 						images={ inputs }
 					/>
 				</Grid>

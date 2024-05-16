@@ -5,7 +5,7 @@ This module is responsible for creating assets. It provides the ability to creat
 ## Dependencies
 
 - [ModelViewer](../../common/ModelViewer/README.md)
-- [app](../../app/README.md) speceifically the form hooks.
+- [app](../../app/README.md) specifically the form hooks.
 
 ## How to integrate
 
@@ -37,6 +37,6 @@ This component uses the `AssetGenerationProgress` internally to show the progres
 
 To get the creation flow to work, you need to use:
 
-1. `generateAsset` async thunk which uploades the image and starts the generation process.
+1. `generateAsset` async thunk which uploads the image and starts the generation process.
 2. `useSseData` hook to get the progress of the generation process.
 3. `getGeneratedAssets` async thunk to get the generated asset. After which you are free to show the 3d model.

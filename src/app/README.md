@@ -1,6 +1,6 @@
 # app
 
-the app contains everything related to the whole application that could be used by all features. This includes the store, the router, the theme, the global styles, the global components, the global hooks, the global utils, etc.
+The app contains everything related to the whole application that could be used by all features. This includes the store, the router, the theme, the global styles, the global components, the global hooks, the global utils, etc.
 
 ## slices
 

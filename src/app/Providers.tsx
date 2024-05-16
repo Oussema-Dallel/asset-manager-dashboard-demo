@@ -17,7 +17,7 @@ interface ProvidersProperties {
 
 /**
  * Wraps the application with several providers as needed. e.g. Redux, i18n, etc.
- * @param properties usually refering to elements injected into individual providers.
+ * @param properties usually referring to elements injected into individual providers.
  * @returns The wrapped application.
  */
 // eslint-disable-next-line @typescript-eslint/naming-convention

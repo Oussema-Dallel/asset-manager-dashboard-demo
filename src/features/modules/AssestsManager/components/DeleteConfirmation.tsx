@@ -33,7 +33,7 @@ const DeleteConfirmation: FunctionComponent<DeleteConfirmationProps> = (
 
 	useEffect((): void => {
 		if (isSuccess) {
-		// This is needed to invalidate the cache for the assets manager query and eneable its immediate refetching
+		// This is needed to invalidate the cache for the assets manager query and enable its immediate refetching
 		// @ts-expect-error More time needs to be spent on this to understand why the type
 		// is not being inferred for the injected endpoints
 			dispatch(apiSlice.util.invalidateTags([{ type: 'AssetsManager' }]));
@@ -41,7 +41,9 @@ const DeleteConfirmation: FunctionComponent<DeleteConfirmationProps> = (
 	}, [ dispatch, isSuccess ]);
 
 	const onHandleDeleteCanceledLocal = useCallback((): void => {
-		// This won't prevent the request from being sent to the server, but it
+		// This won't prevent the request from being sent to the server,
+		// but at least it will follow up with subsequent request with an "AbortError" message
+		// thus allowing for a better reaction
 		deleteAsset({ assetId }).abort();
 		onHandleDeleteCanceled();
 	}, [ deleteAsset, assetId, onHandleDeleteCanceled ]);
