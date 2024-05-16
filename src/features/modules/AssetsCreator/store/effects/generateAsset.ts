@@ -14,7 +14,6 @@ GenerateAssetAsyncRequest,
 	try {
 		const assetId = await generateAssetAsync({ images, assetDescription, assetName });
 
-		console.log(assetId);
 		dispatch(setGeneratedAssetId(assetId));
 	} catch {
 		dispatch(setError('Error generating assets'));

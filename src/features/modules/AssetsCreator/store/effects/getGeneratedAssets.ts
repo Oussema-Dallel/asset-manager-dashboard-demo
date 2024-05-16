@@ -11,10 +11,8 @@ void,
 >(
 	'assetsCreator/getGeneratedAssetOutput',
 	async (_, thunkApi): Promise<void> => {
-		console.log('getGeneratedAssetOutput');
 		const { dispatch, getState } = thunkApi;
 
-		console.log(getState().assetsCreatorSlice);
 		const assetId = getState().assetsCreatorSlice.generatedAssetId;
 
 		if (isNil(assetId)) {
@@ -24,8 +22,6 @@ void,
 
 		try {
 			const response = await getGeneratedAssets(assetId);
-
-			console.log(response);
 
 			dispatch(setIsAssetGenerationLoading(false));
 
