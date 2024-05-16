@@ -77,11 +77,115 @@ const handlers: HttpHandler[] = [
 		return HttpResponse.json([ ...data.assets ]);
 	}),
 
+	http.get<{ assetId: string }, DefaultBodyType, Asset>('/assets/:assetId', async ({ params }) => {
+		await delay(3000);
+
+		return HttpResponse.json(data.assets.find((asset) => asset.assetId === params.assetId));
+	}),
+
 	http.delete<{ assetId: string }, DefaultBodyType, Asset>('/assets/:assetId', async ({ params }) => {
 		data.assets = data.assets.filter((asset) => asset.assetId !== params.assetId);
 		await delay(3000);
 
 		return HttpResponse.json(data.assets.find((asset) => asset.assetId === params.assetId));
+	}),
+	//@ts-expect-error ignore for now
+	http.post<PathParams, FormData, { assetId: string; message: string }>('/upload', async ({ request }) => {
+		const formData = await request.formData();
+
+		const assetName = formData.get('assetName') as string;
+		const assetDescription = formData.get('assetDescription') as string;
+		const images = formData.getAll('images');
+
+		if (!assetName) {
+			console.error('Asset name is required');
+
+			return new HttpResponse('Asset name is required', { status: 400 });
+		}
+
+		if (images.length === 0) {
+			return new HttpResponse('At least one image is required', { status: 400 });
+		}
+
+		// saves the asset to the database "typically" at least without the outputs for now.
+		// especially useful for an editing feature
+		data.assets.push({
+			/* eslint-disable @typescript-eslint/naming-convention */
+			'2d_outputs': [ ],
+
+			'3d_output': '',
+			description: assetDescription,
+			assetId: '5',
+			inputs: [ sneakerWhite, sneakerWhiteSecond, sneakerWhiteThird ],
+			name: assetName,
+			thumbnail: sneakerWhite,
+			/* eslint-enable @typescript-eslint/naming-convention */
+		});
+
+		await delay(3000);
+
+		return HttpResponse.json({ message: `Assets Generation for ${assetName} has begun`, assetId: '5' });
+	}),
+
+	http.get('/asset-generatior-progress', () => {
+		const encoder = new TextEncoder();
+		const stream = new ReadableStream({
+			start (controller): void {
+				// Encode the string chunks using "TextEncoder".
+				controller.enqueue(encoder.encode('data: processing input\n\n'));
+				controller.enqueue(encoder.encode('data: depth classification\n\n'));
+				controller.enqueue(encoder.encode('data: generating point clouds\n\n'));
+				controller.enqueue(encoder.encode('data: filling guassians with details\n\n'));
+				controller.enqueue(encoder.encode('data: generating 3d model splat\n\n'));
+				controller.enqueue(encoder.encode('data: processing output\n\n'));
+				controller.enqueue(encoder.encode('data: done\n\n'));
+				controller.close();
+			},
+		});
+
+		const latencyPipeline = new TransformStream({
+			start (): void {},
+			async transform (chunk, controller): Promise<void> {
+				await delay(3000);
+				controller.enqueue(chunk);
+			},
+		});
+
+		// Send the mocked response immediately.
+		return new HttpResponse(stream.pipeThrough(latencyPipeline), {
+			headers: {
+				/* eslint-disable @typescript-eslint/naming-convention */
+				'Content-Type': 'text/event-stream',
+				'Cache-Control': 'no-cache',
+				'Connection': 'keep-alive',
+				/* eslint-enable @typescript-eslint/naming-convention */
+			},
+		});
+	}),
+
+	http.get<
+	{ assetId: string },
+	DefaultBodyType,
+	Asset
+	// @ts-expect-error ignore for now
+	>('/assets/output/:assetId', async ({ params }) => {
+		const assetToAddOutputFor = data.assets.find((asset) => asset.assetId === params.assetId);
+
+		if (!assetToAddOutputFor) {
+			return new HttpResponse('Asset not found', { status: 404 });
+		}
+
+		await delay(3000);
+
+		// This would have hapened in the background on the server and then the asset is already ready
+		return HttpResponse.json({
+			...assetToAddOutputFor,
+			/* eslint-disable @typescript-eslint/naming-convention */
+			'2d_outputs': [ sneakerWhite, sneakerWhiteSecond, sneakerWhiteThird ],
+			// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+			'3d_output': sneakerWhite3d,
+			/* eslint-enable @typescript-eslint/naming-convention */
+		});
 	}),
 ];
 

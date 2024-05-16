@@ -7,22 +7,30 @@ import { useSelector } from 'react-redux';
 import { Viewer } from '../../../common/ModelViewer/components/Viewer';
 import { Container, Grid, Typography } from '@mui/material';
 import type { FunctionComponent, ReactElement } from 'react';
+import { useGetAssetDetailsQuery } from '../services/assetsManagerApi';
 
 const AssetDetails: FunctionComponent = (): ReactElement => {
-	const { assetId = '' } = useParams();
-	// Ideally we should have an endpoint to fetch the specific asset by id
-	// And we should use the useAppSelector hook to get the asset from the store,
-	// however, since the typing inference of the RTK query plugin is all over the place,
-	// we instead use the default useSelector
-	const asset = useSelector((state: AppState) => getAssetById(state, assetId));
+	const { assetId } = useParams<{ assetId: string }>();
 
-	if (isNil(asset)) {
-		console.error(`Asset with id ${assetId} not found`);
+	if (isNil(assetId)) {
+		throw new Error('Asset id is required');
+	}
 
+	const { data, isLoading, isError, isSuccess } = useGetAssetDetailsQuery(assetId);
+
+	if (isLoading) {
+		return <h1>Loading...</h1>;
+	}
+
+	if (isError) {
+		return <h1>Error: { JSON.stringify(isError) }</h1>;
+	}
+
+	if (!isSuccess || isNil(data)) {
 		return <h1>Asset not found</h1>;
 	}
 
-	const { description, inputs, name, '3d_output': output3d } = asset;
+	const { description, inputs, name, '3d_output': output3d } = data;
 
 	return (
 		<Container

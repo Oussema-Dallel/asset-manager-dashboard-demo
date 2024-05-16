@@ -17,6 +17,9 @@ const assetsManagerSlice = apiSlice.enhanceEndpoints({
 			query: () => ({ url: 'assets' }),
 			providesTags: [ 'AssetsManager' ],
 		}),
+		getAssetDetails: builder.query<Asset, string>({
+			query: (assetId) => ({ url: `assets/${assetId}` }),
+		}),
 		deleteAsset: builder.mutation<DeleteResponse, DeleteAssetRequestBody>({
 			query: ({ assetId }) => ({
 				url: `assets/${assetId}`,
@@ -26,8 +29,8 @@ const assetsManagerSlice = apiSlice.enhanceEndpoints({
 	}),
 });
 
-const { useDeleteAssetMutation, useGetAssetsQuery } = assetsManagerSlice;
+const { useDeleteAssetMutation, useGetAssetsQuery, useGetAssetDetailsQuery } = assetsManagerSlice;
 
 export type { DeleteResponse };
 
-export { useDeleteAssetMutation, useGetAssetsQuery };
+export { useDeleteAssetMutation, useGetAssetsQuery, useGetAssetDetailsQuery };
