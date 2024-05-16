@@ -1,11 +1,20 @@
 import { ControlledTextField } from '../../../../app/components/ControlledTextField';
+import { generateAsset } from '../store/effects/generateAsset';
 import { ImagesInput } from './ImagesInput';
-import { Typography } from '@mui/material';
 import { useForm } from '../../../../app/hooks/form/useForm';
 import { useInput } from '../../../../app/hooks/form/useInput';
+import type { AppDispatch, AppState } from '../../../../store/store';
+import { Button, Typography } from '@mui/material';
 import { type FunctionComponent, type ReactElement, useCallback } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 const AssetGeneratorForm: FunctionComponent = (): ReactElement => {
+	const dispatch = useDispatch<AppDispatch>();
+	const assetGenerationData = useSelector((state: AppState) => state.assetsCreatorSlice);
+	const isUplaodingImages = assetGenerationData.isImagesUploading;
+	const isAssetGenerationLoading = assetGenerationData.isAssetsGenerationLoading;
+
+	const isFormElementDisabled = isUplaodingImages || isAssetGenerationLoading;
 	const assetName = useInput<string>({
 		showErrorsImmediately: false,
 		initialValue: '',
@@ -22,9 +31,14 @@ const AssetGeneratorForm: FunctionComponent = (): ReactElement => {
 
 	const files = useInput<FileList | null>({
 		initialValue: null,
+		validate: (data: FileList | null): Error | undefined => {
+			if (!data || data.length === 0) {
+				return new Error('At least one image is required');
+			}
+		},
 	});
 
-	const form = useForm([ assetName, description ]);
+	const form = useForm([ assetName, description, files ]);
 
 	const handleBeginGeneration = useCallback((event: React.FormEvent<HTMLFormElement>): void => {
 		event.preventDefault();
@@ -33,8 +47,18 @@ const AssetGeneratorForm: FunctionComponent = (): ReactElement => {
 			return;
 		}
 
-		// TODO: Implement asset generation asyncThunk
-	}, [ form ]);
+		// Begin asset generation process
+		void dispatch(
+			generateAsset(
+				{
+					assetDescription: description.value,
+					assetName: assetName.value,
+					// @ts-expect-error as this point the form is validated
+					images: files.value,
+				},
+			),
+		);
+	}, [ assetName.value, description.value, dispatch, files.value, form.isValid ]);
 
 	return (
 		<>
@@ -50,6 +74,7 @@ const AssetGeneratorForm: FunctionComponent = (): ReactElement => {
 			>
 				<ControlledTextField
 					autoFocus={ true }
+					disabled={ isFormElementDisabled }
 					error={ assetName.errorMessage?.message }
 					fieldName='assetName'
 					label='Asset Name'
@@ -59,13 +84,27 @@ const AssetGeneratorForm: FunctionComponent = (): ReactElement => {
 					value={ assetName.value }
 				/>
 				<ControlledTextField
+					disabled={ isFormElementDisabled }
 					fieldName='description'
 					label='Description'
 					multiline
 					onChange={ description.handleValueChange }
 					value={ description.value }
 				/>
-				<ImagesInput files={ files } />
+				<ImagesInput
+					files={ files }
+					isInputDisabled={ isFormElementDisabled }
+				/>
+				<Button
+					color='primary'
+					disabled={ isFormElementDisabled }
+					role='submit'
+					sx={{ marginTop: 2 }}
+					type='submit'
+					variant='contained'
+				>
+					Generate
+				</Button>
 			</form>
 		</>
 	);

@@ -2,30 +2,49 @@ import type { Asset } from '../types/Asset';
 import axios from 'axios';
 import { ContentTypes } from '../../../../app/utils/apiClient/types/ContentTypes';
 
-const uploadInputImages = async (images: FileList) => {
+interface GenerateAssetAsyncRequest {
+	assetDescription: string;
+	assetName: string;
+	readonly images: FileList;
+}
+
+interface GenerateAssetAsyncResponse {
+	data: {
+		assetId: string;
+		message: string;
+	};
+}
+
+const generateAssetAsync = async ({
+	images,
+	assetDescription,
+	assetName,
+}: GenerateAssetAsyncRequest): Promise<string> => {
 	const formData = new FormData();
 
 	for (const image of images) {
-		formData.append('selected-images', image);
+		formData.append('images', image);
 	}
 
-	const response = await axios.post('/upload', {
+	formData.append('assetDescription', assetDescription);
+	formData.append('assetName', assetName);
+
+	const response = await axios.post<FormData, GenerateAssetAsyncResponse>('/upload', formData, {
 		method: 'POST',
-		body: formData,
 		headers: {
 			// eslint-disable-next-line @typescript-eslint/naming-convention
 			'Content-Type': ContentTypes.FORM_DATA,
 		},
 	});
 
-	// TODO: type this correctly when the API mock is implemented
+	return response.data.assetId;
+};
+
+const getGeneratedAssets = async (assetId: string): Promise<Asset> => {
+	const response = await axios.get<void, { data: Asset }>(`/assets/output/${assetId}`);
+
 	return response.data;
 };
 
-const getGeneratedAsset = async (assetId: string): Promise<Asset> => {
-	const response = await axios.get<void, { data: Asset }>(`/assets/${assetId}`);
-
-	return response.data;
-};
-
-export { uploadInputImages, getGeneratedAsset };
+export type { GenerateAssetAsyncRequest };
+export { generateAssetAsync, getGeneratedAssets };

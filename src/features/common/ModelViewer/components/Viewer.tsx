@@ -10,7 +10,7 @@ interface ViewerProps {
 
 const Viewer: FunctionComponent<ViewerProps> = ({ modelSrc }): ReactElement => {
 	return (
-		<Canvas>
+		<Canvas camera={{ position: [ 0, 0, 1 ] }}>
 			<ambientLight intensity={ 0.2 } />
 			<directionalLight
 				color="red"

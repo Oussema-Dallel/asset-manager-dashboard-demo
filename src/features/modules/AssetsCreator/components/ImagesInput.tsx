@@ -5,6 +5,7 @@ import { type FunctionComponent, type ReactElement, useCallback } from 'react';
 
 interface ImagesInputProps {
 	readonly files: Input<FileList | null>;
+	readonly isInputDisabled: boolean;
 }
 
 const VisuallyHiddenInput = styled('input')`
@@ -19,7 +20,7 @@ const VisuallyHiddenInput = styled('input')`
 	width: 1px
 `;
 
-const ImagesInput: FunctionComponent<ImagesInputProps> = ({ files }): ReactElement => {
+const ImagesInput: FunctionComponent<ImagesInputProps> = ({ files, isInputDisabled = false }): ReactElement => {
 	const handleFilesChange = useCallback((event: React.ChangeEvent<HTMLInputElement>): void => {
 		const currentFiles = event.target.files;
 
@@ -43,8 +44,8 @@ const ImagesInput: FunctionComponent<ImagesInputProps> = ({ files }): ReactEleme
 					'&:hover': {
 						borderColor: 'primary.dark',
 					},
-					width: 500,
-					height: 400,
+					width: 350,
+					height: 200,
 				}
 			}
 			tabIndex={ -1 }
@@ -59,6 +60,7 @@ const ImagesInput: FunctionComponent<ImagesInputProps> = ({ files }): ReactEleme
 					Select Images for Asset Generation
 				</Grid>
 				<VisuallyHiddenInput
+					disabled={ isInputDisabled }
 					multiple
 					onChange={ handleFilesChange }
 					type="file"
