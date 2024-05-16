@@ -1,6 +1,27 @@
 # Graswald asset manager dashboard demo
 
-This is a prototype of a dashboard for managing assets - including 3D models, input images and 2D novel views - for the Senior Frontend engineer role at Graswald. It is built using React, Redux, React Router and Material-UI. This is an ongoing Readme file that will be updated as the project progresses.
+This is a prototype of a dashboard for managing assets - including 3D models, input images and 2D novel views - for the Senior Frontend engineer role at Graswald. It is built using React, Redux, React Router and Material-UI.
+
+## Architecture
+
+The application tries to follow a seperation of concerns approach, be it on a global level or modular level. The application is divided into features, each feature is a self-contained module that contains everything related to a specific part of the application. It contains the components, the hooks, the slices, the utils, etc. that are specific to that part of the application. The features are divided into three types: _common_, _modules_. The _pages_ are used to the final results the user will see under the given routes. The _app_ directory contains the global components and hooks that are used by the features. The _mocks_ directory contains the mocking functionaly of the application. It contains the mocks for the api endpoints mainly.
+
+## Disclaimer
+
+I am aware that 4 hours are the time cap for this application. However, I have spent more than that time on this application. I did this as I wanted to provide a certain degree of code quality and best practices. Ultimately, I felt like `Superman` who was sent on a critical mission to save the world on aplanet full of `cryptonite`. However, To give you some context about time managment, I have spent nearly 4 hours on the [AssetsCreator](./src/features/modules/AssetsCreator/) feature (including brainstorming and planning), which is by far the biggest feature in this application.
+
+Also, I have decided to use a mocked api as I spent quite a lot of time searching for an `api` that could take image pairs to generate 3d models. while I found some results. None was a out of the box solution. e.g. The `huggingface` js library dosn't support diffusers at the moment. Moreover, its `inference` apis does not yer support the `image-3d` pipline. As a result, I have decided to use a mocked api to simulate the process of uploading images and generating 3d models.
+
+Even though I have surpassed the 4 hours mark, Time was still limited to implement all of the features and other UX/UI standards. Things which were not taken into accout:
+
+- Accessibility
+- Responsiveness
+- Global Error Handling
+- And more actually which I am happy to discuss in the interview.
+
+Furthermore, you will find some inconsistencies in the approached I have used, especially when it comes to the fetching of data. I have used both `RTK query` and custom `async-thunks` intentionally to show my understanding of both approaches. However, I am more confortable with `async-thunk` as I am more accustomed to it.
+
+Ultimately, I am thankful for the opportunity to work on this project. It was really a humbling experience. I have learned a lot from it and I am looking forward to the feedback and to the next meeting where we could discuss it in details.
 
 ## Getting Started
 

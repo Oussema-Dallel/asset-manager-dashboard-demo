@@ -4,6 +4,14 @@ interface UseSseDataProps {
 	streamingUrl: string;
 }
 
+/**
+ * A custom hook to stream data from a server using Server-Sent Events (SSE). When used in component, it
+ * will automatically connect to the server and start streaming data.
+ * @param streamingUrl the url endpoint to stream data from
+ * @returns an object containing the data and a boolean indicating
+ * if the connection is open. The data is an array of the streamed data typed with the generic
+ * type T provided in the function call.
+ */
 const useSseData = <T>({ streamingUrl }: UseSseDataProps): { data: T[]; isStreaming: boolean } => {
 	const [ data, setData ] = useState<T[]>([]);
 	const [ isConnectionOpen, setIsConnectionOpen ] = useState(false);
