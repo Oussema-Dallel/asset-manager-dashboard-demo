@@ -2,7 +2,7 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { AppContainer } from './AppContainer';
 import { AppLink } from './AppLink';
 import { AppSideBar } from './AppSideBar';
-import Logo from '../../assets/graswald-icon.svg';
+import Logo from '../../assets/icon.svg';
 import MenuIcon from '@mui/icons-material/Menu';
 import { Outlet } from 'react-router-dom';
 import { AppBar, Avatar, Box, Button, Container, IconButton, Menu, MenuItem, styled, SvgIcon, Toolbar, Tooltip, Typography } from '@mui/material';
@@ -68,7 +68,10 @@ const Layout: FunctionComponent = (): ReactElement => {
 								</SvgIcon>
 							</AppLink>
 						</IconButton>
-						<Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
+						<Box
+							component="div"
+							sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}
+						>
 							<IconButton
 								aria-controls="menu-appbar"
 								aria-haspopup="true"
@@ -123,7 +126,10 @@ const Layout: FunctionComponent = (): ReactElement => {
 								</SvgIcon>
 							</AppLink>
 						</IconButton>
-						<Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+						<Box
+							component="div"
+							sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}
+						>
 							{ pages.map((page) => (
 								<AppBarButton
 									LinkComponent={ AppLink }
@@ -138,7 +144,10 @@ const Layout: FunctionComponent = (): ReactElement => {
 							)) }
 						</Box>
 
-						<Box sx={{ flexGrow: 0 }}>
+						<Box
+							component="div"
+							sx={{ flexGrow: 0 }}
+						>
 							<Tooltip title="Open settings">
 								<IconButton
 									onClick={ handleOpenUserMenu }
