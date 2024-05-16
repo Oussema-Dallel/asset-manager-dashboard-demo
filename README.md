@@ -1,6 +1,6 @@
 # Asset manager dashboard demo
 
-This is a prototype of a dashboard for managing assets - including 3D models, input images and 2D novel views - for the Senior Frontend engineer role at Graswald. It is built using React, Redux, React Router and Material-UI.
+This is a prototype of a dashboard for managing assets - including 3D models, input images and 2D novel views. It is built using React, Redux, React Router and Material-UI.
 
 ## Architecture
 
