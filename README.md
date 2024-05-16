@@ -17,7 +17,9 @@ Even though I have surpassed the 4 hours mark, Time was still limited to impleme
 - Accessibility
 - Responsiveness
 - Global Error Handling
+- UI consistency and contrast
 - And more actually which I am happy to discuss in the interview.
+- Testing was not implemented. But the setup is there including testing against components with the store provided to them. e.g. `<App />` component ha s a very sample test that showcases that ina minilam way. Given more time, actual tests would be implemented.
 
 Furthermore, you will find some inconsistencies in the approached I have used, especially when it comes to the fetching of data. I have used both `RTK query` and custom `async-thunks` intentionally to show my understanding of both approaches. However, I am more confortable with `async-thunk` as I am more accustomed to it.
 
