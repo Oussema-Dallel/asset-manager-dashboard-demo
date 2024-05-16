@@ -1,13 +1,10 @@
-import type { AppState } from '../../../../store/store';
-import { getAssetById } from '../store/selectors/getAssetById';
 import { ImageListing } from './ImageListing';
 import { isNil } from '../../../../app/utils/isNil';
+import { useGetAssetDetailsQuery } from '../services/assetsManagerApi';
 import { useParams } from 'react-router-dom';
-import { useSelector } from 'react-redux';
 import { Viewer } from '../../../common/ModelViewer/components/Viewer';
 import { Container, Grid, Typography } from '@mui/material';
 import type { FunctionComponent, ReactElement } from 'react';
-import { useGetAssetDetailsQuery } from '../services/assetsManagerApi';
 
 const AssetDetails: FunctionComponent = (): ReactElement => {
 	const { assetId } = useParams<{ assetId: string }>();
