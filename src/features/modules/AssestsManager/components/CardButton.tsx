@@ -1,7 +1,7 @@
 import { Button, type ButtonProps, CircularProgress, styled } from '@mui/material';
 import type { FunctionComponent, ReactElement, ReactNode } from 'react';
 
-interface CardBtttonProps extends ButtonProps {
+interface CardButtonProps extends ButtonProps {
 	readonly buttonIcon?: ReactElement;
 	readonly buttonText: ReactNode;
 	// To be able to inject custom css when using styled-components' approach
@@ -18,7 +18,7 @@ const ButtonSpinner = styled(CircularProgress)`
     margin-left: -12px;
 `;
 
-const CardButton: FunctionComponent<CardBtttonProps> = (
+const CardButton: FunctionComponent<CardButtonProps> = (
 	{
 		handleButtonClicked,
 		buttonText,

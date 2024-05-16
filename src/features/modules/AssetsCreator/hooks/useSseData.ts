@@ -11,6 +11,7 @@ interface UseSseDataProps {
  * @returns an object containing the data and a boolean indicating
  * if the connection is open. The data is an array of the streamed data typed with the generic
  * type T provided in the function call.
+ * @example const { data, isStreaming } = useSseData<string>({ streamingUrl: 'http://localhost:3000/stream' });
  */
 const useSseData = <T>({ streamingUrl }: UseSseDataProps): { data: T[]; isStreaming: boolean } => {
 	const [ data, setData ] = useState<T[]>([]);

@@ -8,7 +8,7 @@ import { type FunctionComponent, useEffect, useState } from 'react';
 const AssetGenerationProgress: FunctionComponent = () => {
 	const dispatch = useDispatch<AppDispatch>();
 	const [ currentMessage, setCurrentMessage ] = useState<string | undefined>(undefined);
-	const { data: messages } = useSseData<string>({ streamingUrl: 'asset-generatior-progress' });
+	const { data: messages } = useSseData<string>({ streamingUrl: 'asset-generator-progress' });
 
 	useEffect(() => {
 		if (currentMessage === 'done') {

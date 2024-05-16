@@ -37,7 +37,7 @@ const data = {
 			description: 'description',
 			assetId: '2',
 			inputs: [ sneakerWhite, sneakerWhiteSecond, sneakerWhiteThird ],
-			name: 'snaker white',
+			name: 'sneaker white',
 			thumbnail: sneakerWhite,
 		},
 		{
@@ -47,7 +47,7 @@ const data = {
 			description: 'description',
 			assetId: '3',
 			inputs: [ sneakerWhite, sneakerWhiteSecond, sneakerWhiteThird ],
-			name: 'snaker white',
+			name: 'sneaker white',
 			thumbnail: sneakerWhite,
 		},
 		{
@@ -127,7 +127,7 @@ const handlers: HttpHandler[] = [
 		return HttpResponse.json({ message: `Assets Generation for ${assetName} has begun`, assetId: '5' });
 	}),
 
-	http.get('/asset-generatior-progress', () => {
+	http.get('/asset-generator-progress', () => {
 		const encoder = new TextEncoder();
 		const stream = new ReadableStream({
 			start (controller): void {
@@ -135,7 +135,7 @@ const handlers: HttpHandler[] = [
 				controller.enqueue(encoder.encode('data: processing input\n\n'));
 				controller.enqueue(encoder.encode('data: depth classification\n\n'));
 				controller.enqueue(encoder.encode('data: generating point clouds\n\n'));
-				controller.enqueue(encoder.encode('data: filling guassians with details\n\n'));
+				controller.enqueue(encoder.encode('data: filling gaussians with details\n\n'));
 				controller.enqueue(encoder.encode('data: generating 3d model splat\n\n'));
 				controller.enqueue(encoder.encode('data: processing output\n\n'));
 				controller.enqueue(encoder.encode('data: done\n\n'));
@@ -177,7 +177,7 @@ const handlers: HttpHandler[] = [
 
 		await delay(3000);
 
-		// This would have hapened in the background on the server and then the asset is already ready
+		// This would have happened in the background on the server and then the asset is already ready
 		return HttpResponse.json({
 			...assetToAddOutputFor,
 			/* eslint-disable @typescript-eslint/naming-convention */

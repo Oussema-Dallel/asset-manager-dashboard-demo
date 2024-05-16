@@ -3,14 +3,14 @@ import { ImageList, ImageListItem } from '@mui/material';
 
 interface ImageListingProps {
 	readonly assetName: string;
-	readonly colNumer: number;
+	readonly colNumber: number;
 	readonly images: string[];
 }
 
-const ImageListing: FunctionComponent<ImageListingProps> = ({ images, assetName, colNumer }): ReactElement => {
+const ImageListing: FunctionComponent<ImageListingProps> = ({ images, assetName, colNumber }): ReactElement => {
 	return (
 		<ImageList
-			cols={ colNumer }
+			cols={ colNumber }
 			rowHeight={ 164 }
 			sx={{ maxWidth: 500, maxHeight: 450 }}
 		>
